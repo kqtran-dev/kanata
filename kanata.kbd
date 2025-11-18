@@ -13,8 +13,8 @@
 (defvar
   streak-count 3
   streak-time 325
-  tap-timeout 100
-  hold-timeout 500
+  tap-timeout 50
+  hold-timeout 400
   chord-timeout 20
 )
 
@@ -33,7 +33,6 @@
 (defchords mtl $chord-timeout
  (w  ) w
  (  e) e
- ;; (w e) esc
  (w e) lrld
  )
 
@@ -66,5 +65,11 @@
   x (chord mbl x)
   c (chord mbl c)
   ;; / (t! charmod / rctl)
+)
+
+(deflayermap (gaming)
+  ;; Intentionally empty.
+  ;; With `process-unmapped-keys yes`, every key in defsrc just passes through
+  ;; with no chords, no tap-hold, no mods.
 )
 
