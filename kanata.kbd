@@ -4,10 +4,22 @@
 )
 
 (defsrc
-  q w e r t y u i o p
+  q w e r t y u i o p [ ]
   a s d f g h j k l ;
   z x c v b n m , . /
          spc
+)
+
+(defchords mtg-main $chord-timeout
+  ([  ) [
+  (  ]) ]
+  ([ ]) (layer-switch gaming)
+)
+
+(defchords mtg-gaming $chord-timeout
+  ([  ) [
+  (  ]) ]
+  ([ ]) (layer-switch main)
 )
 
 (defvar
@@ -53,6 +65,9 @@
   e (chord mtl e)
   i (chord mtr i)
   o (chord mtr o)
+  ;; toggle into gaming
+  [ (chord mtg-main [)
+  ] (chord mtg-main ])
   a (t! charmod a lmet)
   s (t! charmod s lalt)
   d (t! charmod d lsft)
@@ -68,8 +83,6 @@
 )
 
 (deflayermap (gaming)
-  ;; Intentionally empty.
-  ;; With `process-unmapped-keys yes`, every key in defsrc just passes through
-  ;; with no chords, no tap-hold, no mods.
+  [ (chord mtg-gaming [)
+  ] (chord mtg-gaming ])
 )
-
