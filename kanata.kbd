@@ -49,23 +49,9 @@
  (w e) lrld
  )
 
-(defchords mtr $chord-timeout
-  (i  ) i
-  (  o) o
-  (i o) bspc
-)
-
-(defchords mbl $chord-timeout
-  (x  ) (t! charmod x ralt)
-  (  c) c
-  (x c) tab
-)
-
 (deflayermap (main)
   w (chord mtl w)
   e (chord mtl e)
-  i (chord mtr i)
-  o (chord mtr o)
   ;; toggle into gaming
   [ (chord mtg-main [)
   ] (chord mtg-main ])
@@ -84,8 +70,6 @@
   l (t! charmod l lalt)
   ; (t! charmod ; rmet)
   ;; z (t! charmod z lctl) 
-  x (chord mbl x)
-  c (chord mbl c)
   ;; / (t! charmod / rctl)
 )
 
