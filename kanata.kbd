@@ -52,7 +52,6 @@
 (deflayermap (main)
   w (chord mtl w)
   e (chord mtl e)
-  ;; toggle into gaming
   [ (chord mtg-main [)
   ] (chord mtg-main ])
     caps (tap-hold-release-timeout
@@ -77,6 +76,8 @@
   [ (chord mtg-gaming [)
   ] (chord mtg-gaming ])
 )
+
+
 (deflayermap (extend)
   ;; 1–0, - and = -> F1–F12
   1 f1
