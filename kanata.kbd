@@ -4,12 +4,12 @@
 )
 
 (defsrc
-       1 2 3 4 5 6 7 8 9 0 - =
-       q w e r t y u i o p [ ]
-  caps a s d f g h j k l ;
-       z x c v b n m , .       left right up down
-         spc
-)
+  esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  lsgt  1     2     3     4     5     6     7     8     9     0     -     =     bspc
+  tab   q     w     e     r     t     y     u     i     o     p     [     ]
+  caps  a     s     d     f     g     h     j     k     l     ;     '     \     ret
+  lsft  grv   z     x     c     v     b     n     m     ,     .     /     rsft
+  fn    lctl  lalt  lmet              spc               rmet  ralt  ◀    ▲ ▼    ▶  )
 
 (defchords mtg-main $chord-timeout
   ([  ) [
@@ -70,7 +70,58 @@
   ; (t! charmod ; rmet)
   ;; z (t! charmod z lctl) 
   ;; / (t! charmod / rctl)
+  fn (layer-while-held fnl)
 )
+ 
+(deflayer fnl
+  _    brdn brup _    _    _    _    _    _    _    mute vold volu
+  lsgt  1     2     3     4     5     6     7     8     9     0     -     =     bspc
+  tab   q     w     e     r     t     y     u     i     o     p     [     ]
+  caps  a     s     d     f     g     h     j     k     l     ;     '     \     ret
+  lsft  grv   z     x     c     v     b     n     m     ,     .     /     rsft
+  fn    lctl  lalt  lmet              spc               rmet  ralt  ◀    ▲ ▼    ▶  
+)
+
+(deflayermap (fn)
+  ;; fn row (keep exactly as before)
+  _    brdn brup _    _    _    _    _    _    _    mute vold volu
+
+  ;; everything else = Ctrl + key
+  tab (multi lctl tab)
+
+  1 (multi lctl 1)
+  2 (multi lctl 2)
+  3 (multi lctl 3)
+  4 (multi lctl 4)
+  5 (multi lctl 5)
+  6 (multi lctl 6)
+  7 (multi lctl 7)
+  8 (multi lctl 8)
+  9 (multi lctl 9)
+  0 (multi lctl 0)
+  - (multi lctl -)
+  = (multi lctl =)
+
+  q (multi lctl q)  w (multi lctl w)  e (multi lctl e)  r (multi lctl r)  t (multi lctl t)
+  y (multi lctl y)  u (multi lctl u)  i (multi lctl i)  o (multi lctl o)  p (multi lctl p)
+  [ (multi lctl [)
+  ] (multi lctl ])
+
+  caps (multi lctl caps)
+  a (multi lctl a)  s (multi lctl s)  d (multi lctl d)  f (multi lctl f)  g (multi lctl g)
+  h (multi lctl h)  j (multi lctl j)  k (multi lctl k)  l (multi lctl l)  ; (multi lctl ;)
+
+  z (multi lctl z)  x (multi lctl x)  c (multi lctl c)  v (multi lctl v)  b (multi lctl b)
+  n (multi lctl n)  m (multi lctl m)  , (multi lctl ,)  . (multi lctl .)
+
+  left  (multi lctl left)
+  right (multi lctl right)
+  up    (multi lctl up)
+  down  (multi lctl down)
+
+  spc (multi lctl spc)
+)
+
 
 (deflayermap (gaming)
   [ (chord mtg-gaming [)
