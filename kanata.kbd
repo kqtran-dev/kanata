@@ -73,21 +73,14 @@
   fn (layer-while-held fnl)
 )
  
-(deflayer fnl
-  _    brdn brup _    _    _    _    _    _    _    mute vold volu
-  lsgt  1     2     3     4     5     6     7     8     9     0     -     =     bspc
-  tab   q     w     e     r     t     y     u     i     o     p     [     ]
-  caps  a     s     d     f     g     h     j     k     l     ;     '     \     ret
-  lsft  grv   z     x     c     v     b     n     m     ,     .     /     rsft
-  fn    lctl  lalt  lmet              spc               rmet  ralt  ◀    ▲ ▼    ▶  
-)
+(deflayermap (fnl)
+  f1 brdn 
+  f2 brup
+  f10 mute 
+  f11 vold 
+  f12 volu
 
-(deflayermap (fn)
-  ;; fn row (keep exactly as before)
-  _    brdn brup _    _    _    _    _    _    _    mute vold volu
-
-  ;; everything else = Ctrl + key
-  tab (multi lctl tab)
+  tab C-tab
 
   1 (multi lctl 1)
   2 (multi lctl 2)
