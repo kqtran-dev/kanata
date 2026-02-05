@@ -82,6 +82,32 @@ def current_layer(args):
     ret = api_call(conf)
     print(ret["LayerChange"]["new"])
 
+
+def follow(args):
+    conf = read_config()
+    HOST = conf.get("host", "127.0.0.1")
+    PORT = conf.get("port", 12321)
+
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.connect((HOST, PORT))
+
+        # initial state
+        buf = s.recv(4096)
+        if buf:
+            msg = json.loads(buf)
+            if "LayerChange" in msg:
+                print(msg["LayerChange"]["new"], flush=True)
+
+        # stream updates
+        while True:
+            buf = s.recv(4096)
+            if not buf:
+                break
+            msg = json.loads(buf)
+            if "LayerChange" in msg:
+                print(msg["LayerChange"]["new"], flush=True)
+
+
 parser = argparse.ArgumentParser(
                     prog='kanata-layer',
                     description='Manages kanata-layers',
@@ -96,8 +122,11 @@ parser_list.set_defaults(func=list_layers)
 parser_layer = subparsers.add_parser('change', help='change layer help')
 parser_layer.add_argument('-l','--layer', help="layername to change")
 parser_layer.set_defaults(func=change_layer)
+parser.add_argument('--follow', action='store_true')
 args = parser.parse_args()
-args.func(args)
+if args.follow:
+    follow(args)
+else:
+    args.func(args)
 
 exit(0)
-
