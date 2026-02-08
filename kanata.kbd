@@ -26,9 +26,8 @@
 (defvar
   streak-count 3
   streak-time 325
-  tap-timeout 50 ; max time for a tap to register
-  hold-timeout 250 ; time before a hold is definitely a hold
-  chord-timeout 20
+  tap-timeout 50
+  hold-timeout 250   chord-timeout 20
 )
 
 (deftemplate charmod (char mod)
