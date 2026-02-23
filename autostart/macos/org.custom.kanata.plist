@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.custom.kanata</string>
+    <string>org.custom.kanata</string>
 
     <key>ProgramArguments</key>
     <array>
         <string>/opt/homebrew/bin/kanata</string>
         <string>-c</string>
-        <string>/Users/k/.config/kanata/kanata.kbd</string>
+        <string>/Users/k/.config/kanata/kanata-macos.kbd</string>
         <string>--port</string>
         <string>12321</string>
         <string>--debug</string>

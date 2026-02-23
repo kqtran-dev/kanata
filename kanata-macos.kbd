@@ -1,0 +1,151 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defvar
+  streak-count 3
+  streak-time 325
+  tap-timeout 25
+  hold-timeout 250
+  chord-timeout 100
+)
+
+
+(defsrc
+  esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  lsgt  1     2     3     4     5     6     7     8     9     0     -     =     bspc
+  tab   q     w     e     r     t     y     u     i     o     p     [     ]
+  caps  a     s     d     f     g     h     j     k     l     ;     '     \     ret
+  lsft  grv   z     x     c     v     b     n     m     ,     .     /     rsft
+  fn    lctl  lalt  lmet              spc               rmet  ralt  ◀    ▲ ▼    ▶  )
+
+(defchords mtg-main $chord-timeout
+  ([  ) [
+  (  ]) ]
+  ([ ]) (layer-switch gaming)
+)
+
+(defchords mtg-gaming $chord-timeout
+  ([  ) [
+  (  ]) ]
+  ([ ]) (layer-switch main)
+)
+
+(deftemplate charmod (char mod)
+  (switch 
+    ((key-timing $streak-count less-than $streak-time)) $char break
+    () (tap-hold-release-timeout $tap-timeout $hold-timeout $char $mod $char) break
+  )
+)
+
+(defvirtualkeys
+  shift (multi (layer-switch main) lsft)
+  clear (multi (layer-switch main) (on-press release-virtualkey shift))
+)
+
+(defchords mtl $chord-timeout
+ (w  ) w
+ (  e) e
+ (w e) lrld
+ )
+
+(deflayermap (main)
+  w (chord mtl w)
+  e (chord mtl e)
+  [ (chord mtg-main [)
+  ] (chord mtg-main ])
+    caps (tap-hold-release-timeout
+          $tap-timeout
+          $hold-timeout
+          esc                    ;; tap
+          (layer-while-held extend) ;; hold
+          esc)                   ;; release (tap case)
+  a (t! charmod a lmet)
+  s (t! charmod s lalt)
+  d (t! charmod d lsft)
+  f (t! charmod f lctl)
+  j (t! charmod j rctl)
+  k (t! charmod k rsft)
+  l (t! charmod l lalt)
+  ; (t! charmod ; rmet)
+  ;; z (t! charmod z lctl) 
+  ;; / (t! charmod / rctl)
+  fn (layer-while-held fnl)
+)
+ 
+(deflayermap (fnl)
+  f1 brdn 
+  f2 brup
+  f10 mute 
+  f11 vold 
+  f12 volu
+
+  tab C-tab
+
+  1 (multi lctl 1)
+  2 (multi lctl 2)
+  3 (multi lctl 3)
+  4 (multi lctl 4)
+  5 (multi lctl 5)
+  6 (multi lctl 6)
+  7 (multi lctl 7)
+  8 (multi lctl 8)
+  9 (multi lctl 9)
+  0 (multi lctl 0)
+  - (multi lctl -)
+  = (multi lctl =)
+
+  q (multi lctl q)  w (multi lctl w)  e (multi lctl e)  r (multi lctl r)  t (multi lctl t)
+  y (multi lctl y)  u (multi lctl u)  i (multi lctl i)  o (multi lctl o)  p (multi lctl p)
+  [ (multi lctl [)
+  ] (multi lctl ])
+
+  caps (multi lctl caps)
+  a (multi lctl a)  s (multi lctl s)  d (multi lctl d)  f (multi lctl f)  g (multi lctl g)
+  h (multi lctl h)  j (multi lctl j)  k (multi lctl k)  l (multi lctl l)  ; (multi lctl ;)
+
+  z (multi lctl z)  x (multi lctl x)  c (multi lctl c)  v (multi lctl v)  b (multi lctl b)
+  n (multi lctl n)  m (multi lctl m)  , (multi lctl ,)  . (multi lctl .)
+
+  left  (multi lctl left)
+  right (multi lctl right)
+  up    (multi lctl up)
+  down  (multi lctl down)
+
+  spc (multi lctl spc)
+)
+
+
+(deflayermap (gaming)
+  [ (chord mtg-gaming [)
+  ] (chord mtg-gaming ])
+)
+
+
+(deflayermap (extend)
+  ;; 1–0, - and = -> F1–F12
+  1 f1
+  2 f2
+  3 f3
+  4 f4
+  5 f5
+  6 f6
+  7 f7
+  8 f8
+  9 f9
+  0 f10
+  - f11
+  = f12
+
+  ;; hjkl -> arrows
+  h left
+  j down
+  k up
+  l right
+
+  ;; arrow keys -> home / end / pgup / pgdn
+  left home
+  right end
+  up pgup
+  down pgdn
+)
