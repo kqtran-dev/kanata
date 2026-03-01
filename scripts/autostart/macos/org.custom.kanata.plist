@@ -22,10 +22,10 @@
     <true/>
 
     <key>StandardOutPath</key>
-    <string>/Library/Logs/kanata/kanata.out.log</string>
+    <string>/Library/Logs/kanata/kanata.log</string>
 
     <key>StandardErrorPath</key>
-    <string>/Library/Logs/kanata/kanata.err.log</string>
+    <string>/Library/Logs/kanata/kanata.log</string>
 </dict>
 </plist>
 

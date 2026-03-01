@@ -27,7 +27,8 @@
   streak-count 3
   streak-time 325
   tap-timeout 50
-  hold-timeout 250   chord-timeout 20
+  hold-timeout 250
+  chord-timeout 20
 )
 
 (deftemplate charmod (char mod)
