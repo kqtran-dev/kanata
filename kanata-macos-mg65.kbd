@@ -1,8 +1,16 @@
 (defcfg
   process-unmapped-keys yes
   macos-dev-names-include (
-      "Apple Internal Keyboard / Trackpad"
+    "IQUNIX MG65 BT1"
   )
+)
+
+(defsrc
+  esc   1     2     3     4     5     6     7     8     9     0     -       =       bspc
+  tab   q     w     e     r     t     y     u     i     o     p     [       ]       \
+  caps  a     s     d     f     g     h     j     k     l     ;     '       ret     home
+  lsft  z     x     c     v     b     n     m     ,     .     /     rsft    ▲       end
+  lctl  lalt  lmet              spc               rmet  ralt  rctl  ◀     ▼    ▶  
 )
 
 (defvar
@@ -12,15 +20,6 @@
   hold-timeout 200
   chord-timeout 20
 )
-
-
-(defsrc
-  esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
-  lsgt  1     2     3     4     5     6     7     8     9     0     -     =     bspc
-  tab   q     w     e     r     t     y     u     i     o     p     [     ]
-  caps  a     s     d     f     g     h     j     k     l     ;     '     \     ret
-  lsft  grv   z     x     c     v     b     n     m     ,     .     /     rsft
-  fn    lctl  lalt  lmet              spc               rmet  ralt  ◀    ▲ ▼    ▶  )
 
 (defchords mtg-main $chord-timeout
   ([  ) [
@@ -53,6 +52,12 @@
  )
 
 (deflayermap (main)
+  esc (tap-hold-release-timeout
+  $tap-timeout
+  $hold-timeout
+  grave
+  (layer-while-held modesc)
+  grave)
   w (chord mtl w)
   e (chord mtl e)
   [ (chord mtg-main [)
@@ -118,6 +123,29 @@
   spc (multi lctl spc)
 )
 
+(deflayermap (modesc)
+    1 f1
+    2 f2
+    3 f3
+    4 f4
+    5 f5
+    6 f6
+    7 f7
+    8 f8
+    9 f9
+    0 f10
+    - f11
+    = f12
+    bspc del
+    caps caps
+    lalt lalt
+    left home
+    lctl lctl
+    lsft lsft
+    right end
+    up pgup
+    down pgdn
+)
 
 (deflayermap (gaming)
   [ (chord mtg-gaming [)
