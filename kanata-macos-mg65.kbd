@@ -1,6 +1,7 @@
 (defcfg
   process-unmapped-keys yes
   macos-dev-names-include (
+    "IQUNIX MG65 Mechanical Keyboard"
     "IQUNIX MG65 BT1"
   )
 )
